@@ -12,6 +12,7 @@ Setup:
 ```
 see [grpcurl docmentation](https://github.com/fullstorydev/grpcurl)
 
+![grpcurl screenshot](./docs/grcpurl.png)
 * Because reflection has been enabled on the server, run 
 `grpcurl --plaintext localhost:9092 list` to list out all services on the host.
 Will echo  
