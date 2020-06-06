@@ -18,13 +18,14 @@ func main()  {
 
 	cc := protos.NewCurrencyClient(conn)
 	rate, err := cc.GetRate(context.Background(), &protos.RateRequest{
-		Base:        protos.Currencies_ISK,
-		Destination: protos.Currencies_EUR,
+		Base:        protos.Currencies_EUR,
+		Destination: protos.Currencies_USD,
 	})
 	if err != nil {
 		log.Error("error ", err)
 		return
 	}
 
-	log.Info("Price at Rate", rate.Rate * 500)
+	log.Info("Rate", "Rate", rate.Rate )
+	log.Info("500 AT Rate", "info", rate.Rate * 500)
 }
