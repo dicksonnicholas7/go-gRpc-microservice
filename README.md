@@ -48,3 +48,11 @@ will display all the method on the server.
     "Rate": 0.5
   }
   ```
+
+## Client Connection
+After running the server, run the client in the client dir `go run client/currency_client.go` <br>
+This will display
+```
+    2020-06-06T09:17:32.438Z [INFO]  Price at Rate: EXTRA_VALUE_AT_END=250
+```
+Since our static price is 500 and rate is 0.5, we get 250 displayed
