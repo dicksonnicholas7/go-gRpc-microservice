@@ -26,5 +26,5 @@ func main()  {
 		return
 	}
 
-	log.Info("Current Rate", rate.Rate * 500)
+	log.Info("Price at Rate", rate.Rate * 500)
 }
