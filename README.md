@@ -48,6 +48,49 @@ will display all the method on the server.
     "Rate": 0.5
   }
   ```
+## Bi-Directional Streaming
+To see the description of our bi-directional method SubscribeRates, run `grpcurl --plaintext --msg-template  localhost:9092 describe Currency.SubscribeRates`
+this echo the method our .proto file
+```
+Currency.SubscribeRates is a method:
+rpc SubscribeRates ( stream .RateRequest ) returns ( stream .RateResponse );
+```
+
+To test our client will have to pass a RateRequest, so let's describe it with a template
+`grpcurl --plaintext --msg-template  localhost:9092 describe .RateRequest`
+```
+    RateRequest is a message:
+    message RateRequest {
+      .Currencies Base = 1;
+      .Currencies Destination = 2;
+    }
+    
+    Message template:
+    {
+      "Base": "EUR",
+      "Destination": "EUR"
+    }
+```
+Run the grpcurl client to subscribe to the stream coming from the server. The `-d @` arg means that 
+our cli is open to receive input.
+`grpcurl --plaintext --msg-template -d @ localhost:9092 Currency/SubscribeRates`
+
+We will receive a rate object stream from the object every 5sec, we can copy and paste our RequestRate
+message template to send a stream to our server. 
+```
+{
+  "Rate": 1.133
+}
+{
+  "Rate": 1.133
+}
+{
+      "Base": "EUR",
+      "Destination": "EUR"
+    }
+{
+```
+![grpcurl bi-directional streaming](./docs/bidirectional.png)
 
 ## Client Connection
 After running the server, run the client in the client dir `go run client/currency_client.go` <br>
